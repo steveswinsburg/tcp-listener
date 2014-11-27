@@ -39,6 +39,7 @@
 							<mainClass>au.com.flyingkite.tcplistener.TcpListener</mainClass>
 						</manifest>
 					</archive>
+					<outputDirectory>${project.basedir}</outputDirectory>
 				</configuration>
 			</plugin>
 
