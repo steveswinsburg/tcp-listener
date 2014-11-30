@@ -4,7 +4,7 @@ A simple listener for testing TCP connections. It's multithreaded, and can handl
 
 ## Latest Release
 
-v1.0.0 [Download here](https://github.com/steveswinsburg/tcp-listener/releases/tag/1.0.0)
+v1.0.0 [Download here](https://github.com/steveswinsburg/tcp-listener/releases/download/1.0.0/tcplistener.jar)
 
 Once downloaded, see below on how to run and connect a client.
 
