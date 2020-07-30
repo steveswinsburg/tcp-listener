@@ -2,9 +2,9 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>au.com.flyingkite.tcplistener</groupId>
+	<groupId>io.github.steveswinsburg.tcplistener</groupId>
 	<artifactId>tcplistener</artifactId>
-	<version>1.0-SNAPSHOT</version>
+	<version>1.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
 	<name>TCP Listener</name>
@@ -36,7 +36,7 @@
 					<archive>
 						<manifest>
 							<addClasspath>true</addClasspath>
-							<mainClass>au.com.flyingkite.tcplistener.TcpListener</mainClass>
+							<mainClass>io.github.steveswinsburg.tcplistener.TcpListener</mainClass>
 						</manifest>
 					</archive>
 					<outputDirectory>${project.basedir}</outputDirectory>

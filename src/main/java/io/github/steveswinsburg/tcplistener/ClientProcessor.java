@@ -1,4 +1,4 @@
-package au.com.flyingkite.tcplistener;
+package io.github.steveswinsburg.tcplistener;
 
 import java.io.BufferedReader;
 import java.io.IOException;
