@@ -1,41 +1,36 @@
 package io.github.steveswinsburg.tcplistener;
 
-import java.net.ServerSocket;
-import java.net.Socket;
+import java.io.IOException;
+import java.util.Arrays;
+import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 /**
  * A simple listener for testing TCP connections
- * 
+ *
  * Usage: java -jar TcpListener
  */
 public class TcpListener {
 
-	public static void main(final String args[]) throws Exception {
-
-		int clientId = 0;
+	public static void main(final String args[]) throws IOException {
 
 		if (args.length == 0) {
 			printUsage();
 			return;
 		}
 
-		final int port = Integer.parseInt(args[0]);
-		final ServerSocket server = new ServerSocket(port);
-		System.out.println("Listening on port: " + port);
+		final List<String> ports = Arrays.asList(args);
 
-		while (true) {
+		final ExecutorService executor = Executors.newCachedThreadPool();
 
-			final Socket clientSocket = server.accept(); // will block until receives connection
+		for (final String p : ports) {
 
-			clientId++; // increment this for the client id
+			final int port = Integer.parseInt(p);
 
-			System.out.println("Client " + clientId + " connected from " + clientSocket.getInetAddress());
+			executor.execute(new PortListenerTask(port));
 
-			final ClientProcessor processor = new ClientProcessor(clientId, clientSocket);
-			final Thread t = new Thread(processor);
-			t.start();
 		}
-
 	}
 
 	private static void printUsage() {
