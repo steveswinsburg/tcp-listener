@@ -10,9 +10,9 @@ Once downloaded, see below on how to run and connect a client.
 
 ### Running
 
-`java -jar tcplistener PORT1 PORT2 PORTn`
+`java -jar tcplistener.jar PORT1 PORT2 PORTn`
 
-e.g. `java -jar tcplistener 49064 49065 49067 49068`
+e.g. `java -jar tcplistener.jar 49064 49065 49067 49068`
 
 The server will start and wait for a connection on all ports specified.
 
