@@ -25,17 +25,17 @@ public class PortListenerTask implements Runnable {
 	@Override
 	public void run() {
 
+		boolean ok = true;
+
 		try {
 			this.client = this.server.accept(); // will block until receives connection
+			log("Client connected from " + this.client.getInetAddress());
 		} catch (final IOException e) {
 			err("Error connecting to client: " + e);
-			// should probably disconnect here
-			return;
+			ok = false;
 		}
 
-		log("Client connected from " + this.client.getInetAddress());
-
-		while (true) {
+		while (ok) {
 			try {
 				// read lines from the client
 				final BufferedReader reader = new BufferedReader(new InputStreamReader(this.client.getInputStream()));
@@ -44,12 +44,13 @@ public class PortListenerTask implements Runnable {
 					log(line);
 				}
 
-				disconnect();
-
 			} catch (final IOException e) {
 				err("Error reading from client: " + e);
+				ok = false;
 			}
 		}
+
+		disconnect();
 
 	}
 
@@ -58,11 +59,18 @@ public class PortListenerTask implements Runnable {
 	/**
 	 * Called when disconnecting
 	 *
-	 * @throws IOException
+	 * @throws IllegalStateException weird things happened
 	 */
-	private void disconnect() throws IOException {
-		log("Client disconnected");
-		this.client.close();
+	private void disconnect() throws IllegalStateException {
+		log("Preparing to disconnect");
+		try {
+			this.client.close();
+			log("Client disconnected");
+			Thread.currentThread().interrupt();
+			return;
+		} catch (final IOException e) {
+			err("Error disconnecting: " + e);
+		}
 	}
 
 	/**
