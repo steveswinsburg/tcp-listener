@@ -67,7 +67,6 @@ public class PortListenerTask implements Runnable {
 			this.client.close();
 			log("Client disconnected");
 			Thread.currentThread().interrupt();
-			return;
 		} catch (final IOException e) {
 			err("Error disconnecting: " + e);
 		}
@@ -76,7 +75,7 @@ public class PortListenerTask implements Runnable {
 	/**
 	 * Write out a message
 	 *
-	 * @param message
+	 * @param message the message to log
 	 */
 	private void log(final String message) {
 		System.out.println("[" + this.port + "] " + message);
@@ -85,7 +84,7 @@ public class PortListenerTask implements Runnable {
 	/**
 	 * Write out an error message
 	 *
-	 * @param message
+	 * @param message the message to log
 	 */
 	private void err(final String message) {
 		System.err.println("[" + this.port + "] " + message);
